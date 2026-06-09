@@ -1,1086 +1,1156 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>h3nn | space</title>
 
     <style>
-
-        /* RESET & GLOBAL STYLES */
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        html{
-            scroll-behavior:smooth;
-        }
-
-        body{
-            background-color:#1a0f0a;
-            color:#f5f5f5;
-            overflow-x:hidden;
-            line-height:1.6;
-        }
-
-        a{
-            text-decoration:none;
-            color:inherit;
-        }
-
-        .container{
-            width:100%;
-            max-width:1200px;
-            margin:auto;
-            padding:0 20px;
-        }
-
-        .highlight{
-            color:#ff9f1c;
-        }
-
-        .section-title{
-            text-align:center;
-            font-size:2.5rem;
-            margin-bottom:10px;
-        }
-
-        .section-subtitle{
-            text-align:center;
-            color:#aaa;
-            margin-bottom:50px;
-            padding: 0 10px;
-        }
-
-        .btn-primary{
-            background:#ff9f1c;
-            color:#1a0f0a;
-            padding:12px 24px;
-            border-radius:6px;
-            font-weight:bold;
-            display:inline-block;
-            transition:0.3s;
-            text-align: center;
-        }
-
-        .btn-primary:hover{
-            background:#e28a10;
-        }
-
-        .btn-secondary{
-            border:2px solid #ff9f1c;
-            color:#ff9f1c;
-            padding:10px 22px;
-            border-radius:6px;
-            transition:0.3s;
-            display:inline-block;
-            text-align: center;
-        }
-
-        .btn-secondary:hover{
-            background:#ff9f1c;
-            color:#1a0f0a;
-        }
-
-        /* NAVBAR*/
-
-        header{
-            padding:20px 0;
-            position:sticky;
-            top:0;
-            z-index:1000;
-            background:#1a0f0a;
-            border-bottom: 1px solid #261610;
-        }
-
-        nav{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-        }
-
-        .logo{
-            font-size:1.5rem;
-            font-weight:bold;
-        }
-
-        .nav-links{
-            list-style:none;
-            display:flex;
-            gap:25px;
-        }
-
-        .nav-links a{
-            color:#ccc;
-            transition:0.3s;
-        }
-
-        .nav-links a:hover{
-            color:#ff9f1c;
-        }
-
-        /* HERO SECTION*/
-
-        .hero{
-            min-height:90vh;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:50px;
-            padding:60px 0;
-        }
-
-        .hero-content{
-            flex:1;
-        }
-
-        .hero-content h1{
-            font-size:4rem;
-            margin-bottom:15px;
-            line-height: 1.2;
-        }
-
-        .hero-tagline{
-            font-size:1.3rem;
-            color:#ddd;
-            margin-bottom:20px;
-            font-weight:600;
-        }
-
-        .hero-description{
-            color:#aaa;
-            max-width:550px;
-            margin-bottom:30px;
-        }
-
-        .hero-buttons{
-            display:flex;
-            gap:15px;
-            margin-bottom:40px;
-        }
-
-        .hero-stats{
-            display:flex;
-            gap:30px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item h3{
-            color:#ff9f1c;
-            font-size:2rem;
-        }
-
-        .stat-item p{
-            color:#aaa;
-            font-size:0.9rem;
-        }
-
-        .hero-image-container{
-            flex:1;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-        }
-
-        .hero-blob{
-            width:400px;
-            height:400px;
-            background:#ff6b35;
-            border-radius:40% 60% 60% 40% / 50% 30% 70% 50%;
-            overflow:hidden;
-            transition: 0.5s;
-        }
-
-        .hero-blob img{
-            width:100%;
-            height:100%;
-            object-fit:cover;
-        }
-
-        /* QUOTE SECTION*/
-
-        .quote-section{
-            padding:40px 0;
-            text-align:center;
-            background: #1f120c;
-        }
-
-        .student-quote{
-            font-size:1.2rem;
-            color:#ccc;
-            font-style:italic;
-            max-width: 800px;
-            margin: auto;
-        }
-
-        /* ABOUT SECTION */
-
-        .about{
-            padding:100px 0;
-            background:#21130d;
-        }
-
-        .about-wrapper{
-            display:flex;
-            align-items:center;
-            gap:60px;
-        }
-
-        .about-gallery{
-            flex:1;
-            display:grid;
-            grid-template-columns:repeat(2,1fr);
-            gap:15px;
-        }
-
-        .about-gallery img{
-            width:100%;
-            height:180px;
-            object-fit:cover;
-            border-radius:10px;
-        }
-
-        .about-content{
-            flex:1;
-        }
-
-        .about-sub{
-            color:#ddd;
-            font-weight:600;
-            margin-bottom:20px;
-        }
-
-        .about-desc{
-            color:#aaa;
-            margin-bottom:20px;
-        }
-
-        /* SKILLS SECTION */
-
-        .skills-section{
-            padding:100px 0;
-        }
-
-        .skills-container{
-            display:grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap:25px;
-        }
-
-        .skill-card{
-            background:#261610;
-            border:1px solid #362018;
-            padding:30px;
-            border-radius:12px;
-            transition:0.3s;
-        }
-
-        .skill-card:hover{
-            transform:translateY(-5px);
-            border-color:#ff9f1c;
-        }
-
-        .skill-icon{
-            font-size:2rem;
-            margin-bottom:15px;
-        }
-
-        .skill-card h3{
-            margin-bottom:15px;
-        }
-
-        .skill-card p{
-            color:#aaa;
-            margin-bottom:20px;
-            font-size:0.92rem;
-        }
-
-        .skill-tags{
-            display:flex;
-            flex-wrap:wrap;
-            gap:10px;
-        }
-
-        .skill-tags span{
-            background:#362018;
-            color:#ff9f1c;
-            padding:6px 12px;
-            border-radius:30px;
-            font-size:0.8rem;
-        }
-
-        /* CARD IMAGES (PROJECTS & CERTIFICATIONS) */
-        .card-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 18px;
-            display: block;
-            border: 1px solid #362018;
-        }
-
-        /* PROJECTS SECTION */
-
-        .projects{
-            padding:100px 0;
-            background:#21130d;
-        }
-
-        .projects-grid {
-            display:grid;
-            /* Auto-adjusts columns based on available space - perfect for responsiveness */
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .project-card {
-            background:#261610;
-            border:1px solid #362018;
-            padding:25px;
-            border-radius:12px;
-            transition:0.3s;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform:translateY(-5px);
-            border-color:#ff9f1c;
-        }
-
-        .project-card h3 {
-            margin-bottom:12px;
-            font-size: 1.2rem;
-        }
-
-        .project-card p {
-            color:#aaa;
-            font-size:0.92rem;
-        }
-
-
-        /* CAROUSEL STYLES FOR CERTIFICATIONS */
-
-        .certifications {
-            padding:100px 0;
-        }
-
-        .cert-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            gap: 20px;
-        }
-
-        .cert-header .section-info {
-            text-align: left;
-        }
-
-        .certifications .section-title {
-            text-align: left;
-            margin-bottom: 5px;
-        }
-        .certifications .section-subtitle {
-            text-align: left;
-            margin-bottom: 0;
-        }
-
-        .carousel-nav-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .nav-btn {
-            background: #261610;
-            border: 1px solid #362018;
-            color: #ff9f1c;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: 0.3s;
-            user-select: none;
-        }
-
-        .nav-btn:hover {
-            background: #ff9f1c;
-            color: #1a0f0a;
-            border-color: #ff9f1c;
-        }
-
-        .cert-carousel-wrapper {
-            overflow-x: auto;
-            padding: 10px 0 25px 0;
-            scroll-snap-type: x mandatory; 
-            scroll-behavior: smooth;
-            scrollbar-width: thin; 
-            scrollbar-color: #ff9f1c #261610;
-        }
-
-        .cert-carousel-wrapper::-webkit-scrollbar {
-            height: 6px;
-        }
-        .cert-carousel-wrapper::-webkit-scrollbar-track {
-            background: #261610;
-            border-radius: 10px;
-        }
-        .cert-carousel-wrapper::-webkit-scrollbar-thumb {
-            background: #ff9f1c;
-            border-radius: 10px;
-        }
-
-        .cert-grid {
-            display: flex;
-            gap: 25px;
-        }
-
-        .cert-card {
-            flex: 0 0 calc(33.333% - 17px); /* 3 Columns sa Desktop */
-            min-width: 280px; 
-            scroll-snap-align: start; 
-            background:#261610;
-            border:1px solid #362018;
-            padding:25px;
-            border-radius:12px;
-            transition:0.3s;
-            text-align: left;
-        }
-
-        .cert-card:hover {
-            transform:translateY(-5px);
-            border-color:#ff9f1c;
-        }
-
-        .cert-card h3 {
-            margin-bottom:12px;
-            font-size: 1.2rem;
-        }
-
-        .cert-card p {
-            color:#aaa;
-            font-size:0.92rem;
-        }
-
-
-        /* CONTACT SECTION */
-
-        .contact{
-            padding:100px 0;
-            text-align:center;
-        }
-
-        .contact h2{
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .contact p{
-            color:#aaa;
-            margin-bottom:30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-links{
-            display:flex;
-            justify-content:center;
-            gap:20px;
-            flex-wrap:wrap;
-        }
-
-        /* FOOTER */
-        .footer{
-          padding: 25px 0;
-          text-align: center;
-          background-color: #160d09;
-          border-top: 1px solid #261610;
-        }
-
-        .footer p{
-          color: #777;
-          font-size: 0.85rem;
-          margin: 0;
-        }
-
-        /* ==========================================================
+      /* RESET & GLOBAL STYLES */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: #1a0f0a;
+        color: #f5f5f5;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .highlight {
+        color: #ff9f1c;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        color: #aaa;
+        margin-bottom: 50px;
+        padding: 0 10px;
+      }
+
+      .btn-primary {
+        background: #ff9f1c;
+        color: #1a0f0a;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-weight: bold;
+        display: inline-block;
+        transition: 0.3s;
+        text-align: center;
+      }
+
+      .btn-primary:hover {
+        background: #e28a10;
+      }
+
+      .btn-secondary {
+        border: 2px solid #ff9f1c;
+        color: #ff9f1c;
+        padding: 10px 22px;
+        border-radius: 6px;
+        transition: 0.3s;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .btn-secondary:hover {
+        background: #ff9f1c;
+        color: #1a0f0a;
+      }
+
+      /* NAVBAR*/
+
+      header {
+        padding: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #1a0f0a;
+        border-bottom: 1px solid #261610;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+      }
+
+      .nav-links a {
+        color: #ccc;
+        transition: 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #ff9f1c;
+      }
+
+      /* HERO SECTION*/
+
+      .hero {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+        padding: 60px 0;
+      }
+
+      .hero-content {
+        flex: 1;
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+        margin-bottom: 15px;
+        line-height: 1.2;
+      }
+
+      .hero-tagline {
+        font-size: 1.3rem;
+        color: #ddd;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .hero-description {
+        color: #aaa;
+        max-width: 550px;
+        margin-bottom: 30px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 40px;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .stat-item h3 {
+        color: #ff9f1c;
+        font-size: 2rem;
+      }
+
+      .stat-item p {
+        color: #aaa;
+        font-size: 0.9rem;
+      }
+
+      .hero-image-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hero-blob {
+        width: 400px;
+        height: 400px;
+        background: #ff6b35;
+        border-radius: 40% 60% 60% 40% / 50% 30% 70% 50%;
+        overflow: hidden;
+        transition: 0.5s;
+      }
+
+      .hero-blob img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* QUOTE SECTION*/
+
+      .quote-section {
+        padding: 40px 0;
+        text-align: center;
+        background: #1f120c;
+      }
+
+      .student-quote {
+        font-size: 1.2rem;
+        color: #ccc;
+        font-style: italic;
+        max-width: 800px;
+        margin: auto;
+      }
+
+      /* ABOUT SECTION */
+
+      .about {
+        padding: 100px 0;
+        background: #21130d;
+      }
+
+      .about-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .about-gallery {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .about-gallery img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .about-content {
+        flex: 1;
+      }
+
+      .about-sub {
+        color: #ddd;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .about-desc {
+        color: #aaa;
+        margin-bottom: 20px;
+      }
+
+      /* SKILLS SECTION */
+
+      .skills-section {
+        padding: 100px 0;
+      }
+
+      .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      .skill-card {
+        background: #261610;
+        border: 1px solid #362018;
+        padding: 30px;
+        border-radius: 12px;
+        transition: 0.3s;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-5px);
+        border-color: #ff9f1c;
+      }
+
+      .skill-icon {
+        font-size: 2rem;
+        margin-bottom: 15px;
+      }
+
+      .skill-card h3 {
+        margin-bottom: 15px;
+      }
+
+      .skill-card p {
+        color: #aaa;
+        margin-bottom: 20px;
+        font-size: 0.92rem;
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .skill-tags span {
+        background: #362018;
+        color: #ff9f1c;
+        padding: 6px 12px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+      }
+
+      /* CARD IMAGES (PROJECTS & CERTIFICATIONS) */
+      .card-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 18px;
+        display: block;
+        border: 1px solid #362018;
+      }
+
+      /* PROJECTS SECTION */
+
+      .projects {
+        padding: 100px 0;
+        background: #21130d;
+      }
+
+      .projects-grid {
+        display: grid;
+        /* Auto-adjusts columns based on available space - perfect for responsiveness */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .project-card {
+        background: #261610;
+        border: 1px solid #362018;
+        padding: 25px;
+        border-radius: 12px;
+        transition: 0.3s;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        border-color: #ff9f1c;
+      }
+
+      .project-card h3 {
+        margin-bottom: 12px;
+        font-size: 1.2rem;
+      }
+
+      .project-card p {
+        color: #aaa;
+        font-size: 0.92rem;
+      }
+
+      /* CAROUSEL STYLES FOR CERTIFICATIONS */
+
+      .certifications {
+        padding: 100px 0;
+      }
+
+      .cert-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        gap: 20px;
+      }
+
+      .cert-header .section-info {
+        text-align: left;
+      }
+
+      .certifications .section-title {
+        text-align: left;
+        margin-bottom: 5px;
+      }
+      .certifications .section-subtitle {
+        text-align: left;
+        margin-bottom: 0;
+      }
+
+      .carousel-nav-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .nav-btn {
+        background: #261610;
+        border: 1px solid #362018;
+        color: #ff9f1c;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+        user-select: none;
+      }
+
+      .nav-btn:hover {
+        background: #ff9f1c;
+        color: #1a0f0a;
+        border-color: #ff9f1c;
+      }
+
+      .cert-carousel-wrapper {
+        overflow-x: auto;
+        padding: 10px 0 25px 0;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: #ff9f1c #261610;
+      }
+
+      .cert-carousel-wrapper::-webkit-scrollbar {
+        height: 6px;
+      }
+      .cert-carousel-wrapper::-webkit-scrollbar-track {
+        background: #261610;
+        border-radius: 10px;
+      }
+      .cert-carousel-wrapper::-webkit-scrollbar-thumb {
+        background: #ff9f1c;
+        border-radius: 10px;
+      }
+
+      .cert-grid {
+        display: flex;
+        gap: 25px;
+      }
+
+      .cert-card {
+        flex: 0 0 calc(33.333% - 17px); /* 3 Columns sa Desktop */
+        min-width: 280px;
+        scroll-snap-align: start;
+        background: #261610;
+        border: 1px solid #362018;
+        padding: 25px;
+        border-radius: 12px;
+        transition: 0.3s;
+        text-align: left;
+      }
+
+      .cert-card:hover {
+        transform: translateY(-5px);
+        border-color: #ff9f1c;
+      }
+
+      .cert-card h3 {
+        margin-bottom: 12px;
+        font-size: 1.2rem;
+      }
+
+      .cert-card p {
+        color: #aaa;
+        font-size: 0.92rem;
+      }
+
+      /* CONTACT SECTION */
+
+      .contact {
+        padding: 100px 0;
+        text-align: center;
+      }
+
+      .contact h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+
+      .contact p {
+        color: #aaa;
+        margin-bottom: 30px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      /* FOOTER */
+      .footer {
+        padding: 25px 0;
+        text-align: center;
+        background-color: #160d09;
+        border-top: 1px solid #261610;
+      }
+
+      .footer p {
+        color: #777;
+        font-size: 0.85rem;
+        margin: 0;
+      }
+
+      /* ==========================================================
            RESPONSIVE MEDIA QUERIES (PARA SA LAPTOP, TABLET & MOBILE)
            ========================================================== */
 
-        /* 1. Laptop ug Tablet Size (Max-width: 968px) */
-        @media(max-width:968px){
-            .hero{
-                flex-direction:column-reverse; /* Ang hulagway maanaa sa ibabaw sa mobile text */
-                text-align:center;
-                gap: 40px;
-                padding: 40px 0;
-            }
-
-            .hero-content{
-                display:flex;
-                flex-direction:column;
-                align-items:center;
-            }
-
-            .hero-content h1{
-                font-size:3rem;
-            }
-
-            .hero-description{
-                max-width: 100%;
-            }
-
-            .hero-stats{
-                justify-content: center;
-            }
-
-            .about-wrapper{
-                flex-direction:column;
-                gap: 40px;
-            }
-
-            .about-content {
-                text-align: center;
-            }
-
-            /* 2 columns sa tablet size para sa certificates */
-            .cert-card {
-                flex: 0 0 calc(50% - 13px);
-            }
+      /* 1. Laptop ug Tablet Size (Max-width: 968px) */
+      @media (max-width: 968px) {
+        .hero {
+          flex-direction: column-reverse; /* Ang hulagway maanaa sa ibabaw sa mobile text */
+          text-align: center;
+          gap: 40px;
+          padding: 40px 0;
         }
 
-        /* 2. Tablet Size ug Gamay Pa (Max-width: 768px) */
-        @media(max-width:768px){
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .cert-header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                gap: 15px;
-            }
-            
-            .cert-header .section-info, 
-            .certifications .section-title, 
-            .certifications .section-subtitle {
-                text-align: center;
-            }
+        .hero-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
-        /* 3. Cellphone Screen Size (Max-width: 600px) */
-        @media(max-width:600px){
-            header {
-                padding: 15px 0;
-            }
-
-            /* Tagoon ang taas nga nav links sa mobile ug i-center ang logo */
-            .nav-links{
-                display:none;
-            }
-            
-            nav {
-                justify-content: center;
-            }
-
-            .hero-content h1{
-                font-size:2.4rem;
-            }
-
-            .hero-blob{
-                width:260px;
-                height:260px;
-            }
-
-            .hero-buttons{
-                flex-direction:column;
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .about-gallery {
-                grid-template-columns: 1fr; /* Mahimong single column ang hulagway sa mobile */
-            }
-
-            /* 1 column sa cellphone screens para sa certificates */
-            .cert-card {
-                flex: 0 0 100%;
-            }
+        .hero-content h1 {
+          font-size: 3rem;
         }
 
+        .hero-description {
+          max-width: 100%;
+        }
+
+        .hero-stats {
+          justify-content: center;
+        }
+
+        .about-wrapper {
+          flex-direction: column;
+          gap: 40px;
+        }
+
+        .about-content {
+          text-align: center;
+        }
+
+        /* 2 columns sa tablet size para sa certificates */
+        .cert-card {
+          flex: 0 0 calc(50% - 13px);
+        }
+      }
+
+      /* 2. Tablet Size ug Gamay Pa (Max-width: 768px) */
+      @media (max-width: 768px) {
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .cert-header {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 15px;
+        }
+
+        .cert-header .section-info,
+        .certifications .section-title,
+        .certifications .section-subtitle {
+          text-align: center;
+        }
+      }
+
+      /* 3. Cellphone Screen Size (Max-width: 600px) */
+      @media (max-width: 600px) {
+        header {
+          padding: 15px 0;
+        }
+
+        /* Tagoon ang taas nga nav links sa mobile ug i-center ang logo */
+        .nav-links {
+          display: none;
+        }
+
+        nav {
+          justify-content: center;
+        }
+
+        .hero-content h1 {
+          font-size: 2.4rem;
+        }
+
+        .hero-blob {
+          width: 260px;
+          height: 260px;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .hero-stats {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .about-gallery {
+          grid-template-columns: 1fr; /* Mahimong single column ang hulagway sa mobile */
+        }
+
+        /* 1 column sa cellphone screens para sa certificates */
+        .cert-card {
+          flex: 0 0 100%;
+        }
+      }
+
+      /* NAVBAR */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: white;
+        transition: 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #38bdf8;
+      }
+
+      /* BURGER */
+      .burger {
+        display: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: white;
+        user-select: none;
+      }
+
+      /* MOBILE */
+      @media (max-width: 768px) {
+        .burger {
+          display: block;
+        }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 70px;
+          right: 0;
+          width: 220px;
+          background: #111827;
+          padding: 20px;
+          border-radius: 10px;
+          gap: 15px;
+          text-align: center;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+          z-index: 1000;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-links li {
+          width: 100%;
+        }
+
+        .nav-links a {
+          display: block;
+          padding: 10px;
+        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    h3nn<span class="highlight"> </span>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#certifications">Certificates</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+      <div class="container">
+        <nav>
+          <div class="logo">h3nn<span class="highlight"></span></div>
+
+          <!-- Burger Menu -->
+          <div class="burger" id="burger">☰</div>
+
+          <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
-
     <section id="home" class="container hero">
+      <div class="hero-content">
+        <h1>Hi, I'm <span class="highlight">Hennie</span> 👋</h1>
 
-        <div class="hero-content">
+        <div class="hero-tagline">Project Manager • Creative Thinker</div>
 
-            <h1>
-                Hi, I'm <span class="highlight">Hennie</span> 👋
-            </h1>
+        <p class="hero-description">
+          I am a passionate student who enjoys organizing ideas, leading
+          projects, and creating meaningful solutions. Through academics,
+          tutoring, and collaborative experiences, I continue to improve my
+          communication, leadership, and problem-solving skills.
+        </p>
 
-            <div class="hero-tagline">
-                 Project Manager • Creative Thinker
-            </div>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn-primary"> View Projects </a>
 
-            <p class="hero-description">
-                I am a passionate student who enjoys organizing ideas,
-                leading projects, and creating meaningful solutions.
-                Through academics, tutoring, and collaborative experiences,
-                I continue to improve my communication, leadership,
-                and problem-solving skills.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#projects" class="btn-primary">
-                    View Projects
-                </a>
-
-                <a href="https://drive.google.com/file/d/1-FUVIvAIV-h2A40jWQzdztnvdXJvjQD6/view?usp=drive_link" class="btn-secondary">
-                    Download Resume
-                </a>
-
-            </div>
-
-            <div class="hero-stats">
-
-                <div class="stat-item">
-                    <h3>2+</h3>
-                    <p>Years Tutoring</p>
-                </div>
-
-                <div class="stat-item">
-                    <h3>3+</h3>
-                    <p>Academic Projects</p>
-                </div>
-
-                <div class="stat-item">
-                    <h3>100%</h3>
-                    <p>Passion For Learning</p>
-                </div>
-
-            </div>
-
+          <a
+            href="https://drive.google.com/file/d/1-FUVIvAIV-h2A40jWQzdztnvdXJvjQD6/view?usp=drive_link"
+            class="btn-secondary"
+          >
+            Download Resume
+          </a>
         </div>
 
-        <div class="hero-image-container">
+        <div class="hero-stats">
+          <div class="stat-item">
+            <h3>2+</h3>
+            <p>Years Tutoring</p>
+          </div>
 
-            <div class="hero-blob">
-                <img src="main.jpg" alt="Profile" style="">
-            </div>
+          <div class="stat-item">
+            <h3>3+</h3>
+            <p>Academic Projects</p>
+          </div>
 
+          <div class="stat-item">
+            <h3>100%</h3>
+            <p>Passion For Learning</p>
+          </div>
         </div>
+      </div>
 
+      <div class="hero-image-container">
+        <div class="hero-blob">
+          <img src="main.jpg" alt="Profile" style="" />
+        </div>
+      </div>
     </section>
 
     <section class="quote-section">
-
-        <div class="container">
-
-            <p class="student-quote">
-                “Learning is a continuous journey of growth,
-                creativity, and self-improvement.”
-            </p>
-
-        </div>
-
+      <div class="container">
+        <p class="student-quote">
+          “Learning is a continuous journey of growth, creativity, and
+          self-improvement.”
+        </p>
+      </div>
     </section>
 
     <section id="about" class="about">
-
-        <div class="container about-wrapper">
-
-            <div class="about-gallery">
-
-                <img src="about1.jpg" alt="About1">
-                <img src="about2.jpg" alt="About2">
-                <img src="about3.jpg" alt="About3">
-                <img src="about4.jpg" alt="About4">
-
-            </div>
-
-            <div class="about-content">
-
-                <h2>
-                    About <span class="highlight">Me</span>
-                </h2>
-
-                <div class="about-sub">
-                    Student • Online Tutor • Project Manager
-                </div>
-
-                <p class="about-desc">
-                    My name is Hennie Dumapias, and I am a student who values
-                    leadership, creativity, and continuous learning.
-                    I enjoy participating in projects that help me improve my
-                    communication, teamwork, and organizational skills.
-                </p>
-
-                <p class="about-desc">
-                    Through tutoring, research activities, and project development,
-                    I continue to grow as a responsible and adaptable individual
-                    who is passionate about creating meaningful solutions and
-                    positive learning experiences.
-                </p>
-
-            </div>
-
+      <div class="container about-wrapper">
+        <div class="about-gallery">
+          <img src="about1.jpg" alt="About1" />
+          <img src="about2.jpg" alt="About2" />
+          <img src="about3.jpg" alt="About3" />
+          <img src="about4.jpg" alt="About4" />
         </div>
 
+        <div class="about-content">
+          <h2>About <span class="highlight">Me</span></h2>
+
+          <div class="about-sub">Student • Online Tutor • Project Manager</div>
+
+          <p class="about-desc">
+            My name is Hennie Dumapias, and I am a student who values
+            leadership, creativity, and continuous learning. I enjoy
+            participating in projects that help me improve my communication,
+            teamwork, and organizational skills.
+          </p>
+
+          <p class="about-desc">
+            Through tutoring, research activities, and project development, I
+            continue to grow as a responsible and adaptable individual who is
+            passionate about creating meaningful solutions and positive learning
+            experiences.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section id="skills" class="skills-section">
+      <div class="container">
+        <h2 class="section-title">My <span class="highlight">Skills</span></h2>
 
-        <div class="container">
+        <p class="section-subtitle">
+          Skills and abilities I continue to develop through academics,
+          leadership experiences, tutoring, and project involvement.
+        </p>
 
-            <h2 class="section-title">
-                My <span class="highlight">Skills</span>
-            </h2>
+        <div class="skills-container">
+          <div class="skill-card">
+            <div class="skill-icon">📋</div>
 
-            <p class="section-subtitle">
-                Skills and abilities I continue to develop through academics,
-                leadership experiences, tutoring, and project involvement.
+            <h3>Project Management</h3>
+
+            <p>
+              Organized project planning, task management, teamwork
+              coordination, and leadership skills developed through academic and
+              collaborative projects.
             </p>
 
-            <div class="skills-container">
-
-                <div class="skill-card">
-
-                    <div class="skill-icon">📋</div>
-
-                    <h3>Project Management</h3>
-
-                    <p>
-                        Organized project planning, task management,
-                        teamwork coordination, and leadership skills
-                        developed through academic and collaborative projects.
-                    </p>
-
-                    <div class="skill-tags">
-                        <span>Leadership</span>
-                        <span>Planning</span>
-                        <span>Coordination</span>
-                    </div>
-
-                </div>
-
-                <div class="skill-card">
-
-                    <div class="skill-icon">💬</div>
-
-                    <h3>Communication</h3>
-
-                    <p>
-                        Strong communication abilities gained through
-                        ESL tutoring, presentations, and collaborative
-                        learning experiences.
-                    </p>
-
-                    <div class="skill-tags">
-                        <span>Public Speaking</span>
-                        <span>Tutoring</span>
-                        <span>Presentation</span>
-                    </div>
-
-                </div>
-
-                <div class="skill-card">
-
-                    <div class="skill-icon">📚</div>
-
-                    <h3>Research & Documentation</h3>
-
-                    <p>
-                        Experienced in research writing, documentation,
-                        information organization, and academic reporting.
-                    </p>
-
-                    <div class="skill-tags">
-                        <span>Research</span>
-                        <span>Documentation</span>
-                        <span>Analysis</span>
-                    </div>
-
-                </div>
-
-                <div class="skill-card">
-
-                    <div class="skill-icon">🎨</div>
-
-                    <h3>Creative Thinking</h3>
-
-                    <p>
-                        Passionate about generating creative ideas,
-                        solving problems, and improving systems.
-                    </p>
-
-                    <div class="skill-tags">
-                        <span>Creativity</span>
-                        <span>Problem Solving</span>
-                        <span>Innovation</span>
-                    </div>
-
-                </div>
-
-                <div class="skill-card">
-
-                    <div class="skill-icon">🛠️</div>
-
-                    <h3>Digital Skills</h3>
-
-                    <p>
-                        Familiar with digital productivity tools
-                        used for academic tasks and project organization.
-                    </p>
-
-                    <div class="skill-tags">
-                        <span>Canva</span>
-                        <span>MS Office</span>
-                        <span>Google Workspace</span>
-                    </div>
-
-                </div>
-
-                <div class="skill-card">
-
-                    <div class="skill-icon">🤝</div>
-
-                    <h3>Teamwork & Adaptability</h3>
-
-                    <p>
-                        Able to collaborate effectively with teams
-                        while adapting to challenges and new environments.
-                    </p>
-
-                    <div class="skill-tags">
-                        <span>Teamwork</span>
-                        <span>Adaptability</span>
-                        <span>Collaboration</span>
-                    </div>
-
-                </div>
-
+            <div class="skill-tags">
+              <span>Leadership</span>
+              <span>Planning</span>
+              <span>Coordination</span>
             </div>
+          </div>
 
+          <div class="skill-card">
+            <div class="skill-icon">💬</div>
+
+            <h3>Communication</h3>
+
+            <p>
+              Strong communication abilities gained through ESL tutoring,
+              presentations, and collaborative learning experiences.
+            </p>
+
+            <div class="skill-tags">
+              <span>Public Speaking</span>
+              <span>Tutoring</span>
+              <span>Presentation</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">📚</div>
+
+            <h3>Research & Documentation</h3>
+
+            <p>
+              Experienced in research writing, documentation, information
+              organization, and academic reporting.
+            </p>
+
+            <div class="skill-tags">
+              <span>Research</span>
+              <span>Documentation</span>
+              <span>Analysis</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">🎨</div>
+
+            <h3>Creative Thinking</h3>
+
+            <p>
+              Passionate about generating creative ideas, solving problems, and
+              improving systems.
+            </p>
+
+            <div class="skill-tags">
+              <span>Creativity</span>
+              <span>Problem Solving</span>
+              <span>Innovation</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">🛠️</div>
+
+            <h3>Digital Skills</h3>
+
+            <p>
+              Familiar with digital productivity tools used for academic tasks
+              and project organization.
+            </p>
+
+            <div class="skill-tags">
+              <span>Canva</span>
+              <span>MS Office</span>
+              <span>Google Workspace</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-icon">🤝</div>
+
+            <h3>Teamwork & Adaptability</h3>
+
+            <p>
+              Able to collaborate effectively with teams while adapting to
+              challenges and new environments.
+            </p>
+
+            <div class="skill-tags">
+              <span>Teamwork</span>
+              <span>Adaptability</span>
+              <span>Collaboration</span>
+            </div>
+          </div>
         </div>
-
+      </div>
     </section>
 
     <section id="projects" class="projects">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                My <span class="highlight">Previous Projects</span>
-            </h2>
-
-            <p class="section-subtitle">
-                Academic, creative, and leadership projects
-                that helped me improve my skills and experiences.
-            </p>
-
-            <div class="projects-grid">
-
-                <div class="project-card">
-                    <img src="queue.jpg" alt="Queue Management" class="card-img">
-                    <h3>Predictive Queue Analytics and Digital Scheduling System</h3>
-                    <p>
-                        This system aims to address the problems encountered at the Registrar's Office.
-                    </p>
-                </div>
-
-                <div class="project-card">
-                    <img src="marsafe.png" alt="MarSafe PH" class="card-img">
-                    <h3>MarSafe PH</h3>
-                    <p>
-                       This system aims to help the fisherfolks interms of emergencies encountered at sea.
-                    </p>
-                </div>
-
-                <div class="project-card">
-                    <img src="event.jpg" alt="Event System" class="card-img">
-                    <h3>Event Management System</h3>
-                    <p>
-                        This system provides solutions to event caterings to manage and track their schedules and booking accordingly.
-                    </p>
-                </div>
-
-                <div class="project-card">
-                    <img src="trabahanap.jpg" alt="TrabaHanap" class="card-img">
-                    <h3>TrabaHanap</h3>
-                    <p>
-                        This system aims to help the people in Panabo City to find job that is suitable to their educational background and other preferences.
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section id="certifications" class="certifications">
-        <div class="container">
-
-            <div class="cert-header">
-                <div class="section-info">
-                    <h2 class="section-title">My <span class="highlight">Certifications</span></h2>
-                    <p class="section-subtitle">Training programs and workshops that refined my baseline.</p>
-                </div>
-                <div class="carousel-nav-buttons">
-                    <button class="nav-btn" id="prevBtn">‹</button>
-                    <button class="nav-btn" id="nextBtn">›</button>
-                </div>
-            </div>
-
-            <div class="cert-carousel-wrapper" id="carouselWrapper">
-                <div class="cert-grid">
-
-                    <a href="" target="_blank" class="cert-card">
-                        <img src="cert1.jpg" alt="IP" class="card-img">
-                        <h3>Intellectual Proprty Training</h3>
-                        <p>This certification for actively joining the seminar about enhancing the knowledge of importance of intellectual property.</p>
-                    </a>
-
-                    <a href="" target="_blank" class="cert-card">
-                        <img src="cert2.jpg" alt="Leadership Seminar" class="card-img">
-                        <h3>On-the-Job Training</h3>
-                        <p>This certification was given for finishing the 486 hours of on-the-job training at the DNSC Registrar's Office.</p>
-                    </a>
-
-                    <a href="" target="_blank" class="cert-card">
-                        <img src="cert3.jpg" alt="Research Workshop" class="card-img">
-                        <h3>Capstone Project Exhibit</h3>
-                        <p>This certification was given for participating the 2026 BSIS and BSIT Capstone Project Exhibit.</p>
-                    </a>
-
-                    <a href="#" target="_blank" class="cert-card">
-                        <img src="cert4.jpg" alt="Project Management Fundamentals" class="card-img">
-                        <h3>Day 1- Advance Seminar</h3>
-                        <p>This certification was given for successfully completing the seminar with the topic "Journey from Science Practitioner to Information Specialist"</p>
-                    </a>
-
-                    <a href="#" target="_blank" class="cert-card">
-                        <img src="cert5.jpg" alt="Digital Productivity Tools" class="card-img">
-                        <h3>Day 2- Advance Seminar</h3>
-                        <p>This certification was given for successfully completing the seminar with the topic "The Power of Color in Graphic Design: Theory, Psychology, and Practice"</p>
-                    </a>
-
-                    <a href="#" target="_blank" class="cert-card">
-                        <img src="cert6.jpg" alt="Data & Analytics Workshop" class="card-img">
-                        <h3>Booth Champion</h3>
-                        <p>This certification was awarded for achieving Champion in the Booth Category.</p>
-                    </a>
-
-                    <a href="#" target="_blank" class="cert-card">
-                        <img src="cert7.jpg" alt="Strategic Collaboration" class="card-img">
-                        <h3>Level App 2.0 Event</h3>
-                        <p>This certification was awarded for active participation in showcasing the startup project.</p>
-                    </a>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-
- <section id="contact" class="contact">
-
-    <div class="container">
-
-        <h2>
-            Contact <span class="highlight">Me</span>
+      <div class="container">
+        <h2 class="section-title">
+          My <span class="highlight">Previous Projects</span>
         </h2>
 
+        <p class="section-subtitle">
+          Academic, creative, and leadership projects that helped me improve my
+          skills and experiences.
+        </p>
+
+        <div class="projects-grid">
+          <div class="project-card">
+            <img src="queue.jpg" alt="Queue Management" class="card-img" />
+            <h3>Predictive Queue Analytics and Digital Scheduling System</h3>
+            <p>
+              This system aims to address the problems encountered at the
+              Registrar's Office.
+            </p>
+          </div>
+
+          <div class="project-card">
+            <img src="marsafe.png" alt="MarSafe PH" class="card-img" />
+            <h3>MarSafe PH</h3>
+            <p>
+              This system aims to help the fisherfolks interms of emergencies
+              encountered at sea.
+            </p>
+          </div>
+
+          <div class="project-card">
+            <img src="event.jpg" alt="Event System" class="card-img" />
+            <h3>Event Management System</h3>
+            <p>
+              This system provides solutions to event caterings to manage and
+              track their schedules and booking accordingly.
+            </p>
+          </div>
+
+          <div class="project-card">
+            <img src="trabahanap.jpg" alt="TrabaHanap" class="card-img" />
+            <h3>TrabaHanap</h3>
+            <p>
+              This system aims to help the people in Panabo City to find job
+              that is suitable to their educational background and other
+              preferences.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications" class="certifications">
+      <div class="container">
+        <div class="cert-header">
+          <div class="section-info">
+            <h2 class="section-title">
+              My <span class="highlight">Certifications</span>
+            </h2>
+            <p class="section-subtitle">
+              Training programs and workshops that refined my baseline.
+            </p>
+          </div>
+          <div class="carousel-nav-buttons">
+            <button class="nav-btn" id="prevBtn">‹</button>
+            <button class="nav-btn" id="nextBtn">›</button>
+          </div>
+        </div>
+
+        <div class="cert-carousel-wrapper" id="carouselWrapper">
+          <div class="cert-grid">
+            <a href="" target="_blank" class="cert-card">
+              <img src="cert1.jpg" alt="IP" class="card-img" />
+              <h3>Intellectual Proprty Training</h3>
+              <p>
+                This certification for actively joining the seminar about
+                enhancing the knowledge of importance of intellectual property.
+              </p>
+            </a>
+
+            <a href="" target="_blank" class="cert-card">
+              <img src="cert2.jpg" alt="Leadership Seminar" class="card-img" />
+              <h3>On-the-Job Training</h3>
+              <p>
+                This certification was given for finishing the 486 hours of
+                on-the-job training at the DNSC Registrar's Office.
+              </p>
+            </a>
+
+            <a href="" target="_blank" class="cert-card">
+              <img src="cert3.jpg" alt="Research Workshop" class="card-img" />
+              <h3>Capstone Project Exhibit</h3>
+              <p>
+                This certification was given for participating the 2026 BSIS and
+                BSIT Capstone Project Exhibit.
+              </p>
+            </a>
+
+            <a href="#" target="_blank" class="cert-card">
+              <img
+                src="cert4.jpg"
+                alt="Project Management Fundamentals"
+                class="card-img"
+              />
+              <h3>Day 1- Advance Seminar</h3>
+              <p>
+                This certification was given for successfully completing the
+                seminar with the topic "Journey from Science Practitioner to
+                Information Specialist"
+              </p>
+            </a>
+
+            <a href="#" target="_blank" class="cert-card">
+              <img
+                src="cert5.jpg"
+                alt="Digital Productivity Tools"
+                class="card-img"
+              />
+              <h3>Day 2- Advance Seminar</h3>
+              <p>
+                This certification was given for successfully completing the
+                seminar with the topic "The Power of Color in Graphic Design:
+                Theory, Psychology, and Practice"
+              </p>
+            </a>
+
+            <a href="#" target="_blank" class="cert-card">
+              <img
+                src="cert6.jpg"
+                alt="Data & Analytics Workshop"
+                class="card-img"
+              />
+              <h3>Booth Champion</h3>
+              <p>
+                This certification was awarded for achieving Champion in the
+                Booth Category.
+              </p>
+            </a>
+
+            <a href="#" target="_blank" class="cert-card">
+              <img
+                src="cert7.jpg"
+                alt="Strategic Collaboration"
+                class="card-img"
+              />
+              <h3>Level App 2.0 Event</h3>
+              <p>
+                This certification was awarded for active participation in
+                showcasing the startup project.
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Contact <span class="highlight">Me</span></h2>
+
         <p>
-            Thank you for visiting my portfolio.
-            I am always open to learning opportunities,
-            collaborations, and meaningful projects.
+          Thank you for visiting my portfolio. I am always open to learning
+          opportunities, collaborations, and meaningful projects.
         </p>
 
         <div class="contact-info">
-            <p><strong>Email:</strong> <a href="mailto:dumapias.hennie@dnsc.edu.ph">dumapias.hennie@dnsc.edu.ph</a></p>
-            <p><strong>Phone:</strong> <a href="tel:+639164233248">+63 916 423 3248</a></p>
-            <p><strong>Address:</strong> Nabunturan, Davao Region, Philippines</p>
+          <p>
+            <strong>Email:</strong>
+            <a href="mailto:dumapias.hennie@dnsc.edu.ph"
+              >dumapias.hennie@dnsc.edu.ph</a
+            >
+          </p>
+          <p>
+            <strong>Phone:</strong>
+            <a href="tel:+639164233248">+63 916 423 3248</a>
+          </p>
+          <p><strong>Address:</strong> Nabunturan, Davao Region, Philippines</p>
         </div>
 
         <div class="contact-links">
+          <a
+            href="https://www.facebook.com/share/1Cv6MRKrre/"
+            target="_blank"
+            class="btn-primary"
+          >
+            Facebook
+          </a>
 
-            <a href="https://www.facebook.com/share/1Cv6MRKrre/" target="_blank" class="btn-primary">
-                Facebook
-            </a>
-
-            <a href="https://ph.jobstreet.com/profile/me" class="btn-secondary">
-                Job Street
-            </a>
-
+          <a href="https://ph.jobstreet.com/profile/me" class="btn-secondary">
+            Job Street
+          </a>
         </div>
-
-    </div>
-
-</section>
+      </div>
+    </section>
     <footer class="footer">
-        <div class="container footer-content">
-            <p>© 2026 <span class="highlight">h3nn</span>. All rights reserved.</p>
-        </div>
+      <div class="container footer-content">
+        <p>© 2026 <span class="highlight">h3nn</span>. All rights reserved.</p>
+      </div>
     </footer>
 
     <script>
-        const wrapper = document.getElementById('carouselWrapper');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
+      const wrapper = document.getElementById("carouselWrapper");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
 
-        // Dynamic adjustment sa scroll base sa size sa device card
-        nextBtn.addEventListener('click', () => {
-            const cardWidth = document.querySelector('.cert-card').offsetWidth + 25;
-            wrapper.scrollBy({ left: cardWidth, behavior: 'smooth' });
-        });
+      // Dynamic adjustment sa scroll base sa size sa device card
+      nextBtn.addEventListener("click", () => {
+        const cardWidth = document.querySelector(".cert-card").offsetWidth + 25;
+        wrapper.scrollBy({ left: cardWidth, behavior: "smooth" });
+      });
 
-        prevBtn.addEventListener('click', () => {
-            const cardWidth = document.querySelector('.cert-card').offsetWidth + 25;
-            wrapper.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+      prevBtn.addEventListener("click", () => {
+        const cardWidth = document.querySelector(".cert-card").offsetWidth + 25;
+        wrapper.scrollBy({ left: -cardWidth, behavior: "smooth" });
+      });
+
+      const burger = document.getElementById("burger");
+      const navLinks = document.getElementById("navLinks");
+
+      burger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("active");
         });
+      });
     </script>
-
-</body>
+  </body>
 </html>
